@@ -4,6 +4,15 @@ function getUserSelection() {
         if (userSelection.length > 2 && userSelection.length < 50) {
             return callApiForTranslate(userSelection);
         }
+
+        // document.addEventListener('click', function(event) {
+        //     const target = event.target
+        //     if(!target.matches('input')) {
+        //         if (userSelection.length > 2 && userSelection.length < 50) {
+        //             return callApiForTranslate(userSelection);
+        //         }
+        //     }
+        // })
     }
 }
 
@@ -23,22 +32,28 @@ function callApiForTranslate(valueSelected) {
 }
 
 function insertHtmlFromSelection(selectionObject, translation) {
-    let range;
-    if (selectionObject.getRangeAt && selectionObject.rangeCount) {
-        range = selectionObject.getRangeAt(0);
-        range.collapse(false);
-
-        // insert html content
-        const el = document.createElement("div");
-        el.innerHTML = `<span class="translate">[${targetLanguage.toUpperCase()}: ${translation} ]</span>`;
-        let frag = document.createDocumentFragment();
+    if(selectionObject.getRangeAt(0).startContainer.childNodes.length === 0) {
+        let range;
+        let expandedSelRange;
         let node;
-        let lastNode;
-        while ((node = el.firstChild)) {
-            lastNode = frag.appendChild(node);
+        if (selectionObject.getRangeAt && selectionObject.rangeCount) {
+            range = selectionObject.getRangeAt(0);
+            expandedSelRange = range.cloneRange();
+            console.log(range)
+            range.collapse(false);
+
+            // insert html content
+            const el = document.createElement("div");
+            el.innerHTML = `<span class="translate">[${targetLanguage.toUpperCase()}: ${translation} ]</span>`;
+            let frag = document.createDocumentFragment();
+            let node;
+            let lastNode;
+                while ((node = el.firstChild)) {
+                    lastNode = frag.appendChild(node);
+                }
+            range.insertNode(frag);
+            selectionObject.empty();
         }
-        range.insertNode(frag);
-        selectionObject.empty();
     }
 }
 
