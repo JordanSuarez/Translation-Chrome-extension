@@ -8,5 +8,5 @@
   }
   ```
 - Load extension folder on your chrome web browser *chrome://extensions/* (be sure to activate developper mode)
-- Then click on a text you wish to translate
+- Then select or click on a text you wish to translate
 
