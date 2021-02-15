@@ -1,8 +1,12 @@
 {
   "manifest_version": 2,
   "name": "Translate",
+  "description": "Translate selected content",
   "version": "1.0.0",
-  "permissions": ["activeTab"],
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
   "icons": {
     "48": "icons/icon48.png"
   },
@@ -11,12 +15,18 @@
       "16": "icons/icon16.png",
       "24": "icons/icon24.png",
       "32": "icons/icon32.png"
-    }
+    },
+    "default_popup": "popup.html",
+    "default_title": "Translate"
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content.js", "config.js", "apiConfig.js"],
+      "js": [
+        "helper.js",
+        "content.js",
+        "config.js"
+      ],
       "css": ["styles.css"]
     }
   ]

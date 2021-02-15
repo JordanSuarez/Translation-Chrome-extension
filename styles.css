@@ -1,3 +1,7 @@
 .translate {
     color: blue ;
 }
+
+.popup {
+    border-radius: 2rem;
+}
