@@ -3,36 +3,48 @@
     <head>
         <title>Translate options</title>
         <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="switch.css">
     </head>
-    <body style="width: 300px" class="popup">
-        <h2>Translate options</h2>
-        <form id="form">
+    <body class="popup">
+        <div class="popup popup--title">
+            <img src="icons/icon24.png" alt="icon translate">
+            <h2>Translate options</h2>
+        </div>
+        <div class="popup--activate">
+            <span>Translation is activate on this page</span>
+            <div class="onoffswitch">
+                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" tabindex="0" checked>
+                <label class="onoffswitch-label" for="myonoffswitch"></label>
+            </div>
+        </div>
+        <form id="popup popup--form">
             <div>
-                <label for="source-translate-language">Choose the source language</label>
-                <select id="source-translate-language" name="source-translate-language">
+                <label for="source-translate-language">Choose the source language*</label>
+                <select id="source-translate-language" name="source-translate-language" class="popup popup--select">
                     <option value="">--Please choose language--</option>
                     <option value="fr">French</option>
                     <option value="en">English</option>
                     <option value="es">Spanish</option>
                     <option value="de">Deutsch</option>
-                    <option value="ch">Chinese</option>
+                    <option value="zh">Chinese</option>
                     <option value="ru">Russian</option>
                 </select>
             </div>
             <div>
-                <label for="target-translate-language">Choose the target translation language</label>
-                <select id="target-translate-language" name="target-translate-language">
+                <label for="target-translate-language">Choose the target language*</label>
+                <select id="target-translate-language" name="target-translate-language" class="popup popup--select">
                     <option value="">--Please choose language--</option>
                     <option value="fr">French</option>
                     <option value="en">English</option>
                     <option value="es">Spanish</option>
                     <option value="de">Deutsch</option>
-                    <option value="ch">Chinese</option>
+                    <option value="zh">Chinese</option>
                     <option value="ru">Russian</option>
                 </select>
             </div>
-            <button id="submit-button" type="submit">Submit</button>
+            <button id="submit-button" type="submit" class="popup popup--button">Submit</button>
         </form>
+        <script type="text/javascript" src="languages.js"></script>
         <script type="text/javascript" src="popup.js"></script>
         <script type="text/javascript" src="helper.js"></script>
     </body>

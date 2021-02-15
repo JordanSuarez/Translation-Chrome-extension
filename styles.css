@@ -4,4 +4,43 @@
 
 .popup {
     border-radius: 2rem;
+    width: 17rem;
 }
+
+.popup--title {
+    display: flex;
+    align-items: start;
+}
+
+h2 {
+    margin-top: 0.1rem;
+    font-weight: 200;
+}
+
+.popup--activate {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.popup--form {
+
+}
+
+.popup--select {
+    border-radius: 3px;
+    padding: 0.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.popup--button {
+    width: auto;
+    padding: 0.4rem;
+    background-color: #1C9DE8;
+    border: none;
+    border-radius: 3px;
+    color: white;
+}
+
+
