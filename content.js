@@ -1,17 +1,14 @@
-let storageCache;
+let storageCache = {
+    languages: {
+        source: 'en',
+        target: 'fr',
+    }
+};
 
 //Get languages in chrome storage from user input
-chrome.storage.sync.get(['language'], function(response) {
-    if (response) {
+chrome.storage.sync.get(['languages'], function(response) {
+    if (Object.keys(response).length > 0) {
         storageCache = response
-    } else {
-        storageCache = {
-            language: {
-                source: 'en',
-                target: 'fr',
-            }
-        }
-        console.log(storageCache)
     }
     document.addEventListener("mouseup", getUserSelection)
 });
@@ -31,7 +28,7 @@ function getUserSelection() {
 }
 
 function callApiForTranslate(valueSelected) {
-    fetch(apiUrl(valueSelected, storageCache.language), {
+    fetch(apiUrl(valueSelected, storageCache.languages), {
         "method": "GET",
         "headers": {
             "x-rapidapi-key": config.apiKey,
@@ -60,7 +57,7 @@ function insertHtmlFromSelection(selectionObject, translation) {
 
         // insert html content
         const el = document.createElement("div");
-        el.innerHTML = `<span class="translate">[${storageCache.language.target.toUpperCase()}: ${translation} ]</span>`;
+        el.innerHTML = `<span class="translate">[${storageCache.languages.target.toUpperCase()}: ${translation} ]</span>`;
         let frag = document.createDocumentFragment();
         let node;
         let lastNode;
@@ -73,6 +70,6 @@ function insertHtmlFromSelection(selectionObject, translation) {
     }
 }
 
-function apiUrl(valueSelected, language) {
-    return `https://translated-mymemory---translation-memory.p.rapidapi.com/api/get?langpair=${language.source}%7C${language.target}&q=${valueSelected}&mt=1&onlyprivate=0&de=a%40b.c`
+function apiUrl(valueSelected, languages) {
+    return `https://translated-mymemory---translation-memory.p.rapidapi.com/api/get?langpair=${languages.source}%7C${languages.target}&q=${valueSelected}&mt=1&onlyprivate=0&de=a%40b.c`
 }

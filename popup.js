@@ -19,10 +19,10 @@ const app = {
     },
     displayStorageLanguage: () => {
         //Display languages on chrome storage
-        chrome.storage.sync.get(['language'], function({language}) {
-            if (language) {
-                app.selectSourceLanguage.value = language.source;
-                app.selectTargetLanguage.value = language.target;
+        chrome.storage.sync.get(['languages'], function({languages}) {
+            if (languages) {
+                app.selectSourceLanguage.value = languages.source;
+                app.selectTargetLanguage.value = languages.target;
             } else {
                 app.selectSourceLanguage.value = app.defaultSourceLanguage;
                 app.selectTargetLanguage.value = app.defaultTargetLanguage;
@@ -63,7 +63,7 @@ const app = {
     },
     saveSelectedValueOnStorage: (selectedValues) => {
         // Save selected values
-        chrome.storage.sync.set({'language': selectedValues});
+        chrome.storage.sync.set({'languages': selectedValues});
     },
     handleToggleButtonStatus: () => {
         // Save toggle button status
