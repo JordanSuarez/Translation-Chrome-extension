@@ -11,17 +11,16 @@
             <h2>Translate options</h2>
         </div>
         <div class="popup--activate">
-            <span>Translation is activate on this page</span>
-            <div class="onoffswitch">
-                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" tabindex="0" checked>
-                <label class="onoffswitch-label" for="myonoffswitch"></label>
+            <span id="popup--activate--title"></span>
+            <div class="toggle-button">
+                <input type="checkbox" name="toggle-button" class="toggle-button-checkbox" id="toggle-button" tabindex="0" checked>
+                <label class="toggle-button-label" for="toggle-button"></label>
             </div>
         </div>
-        <form id="popup popup--form">
+        <form>
             <div>
                 <label for="source-translate-language">Choose the source language*</label>
                 <select id="source-translate-language" name="source-translate-language" class="popup popup--select">
-                    <option value="">--Please choose language--</option>
                     <option value="fr">French</option>
                     <option value="en">English</option>
                     <option value="es">Spanish</option>
@@ -33,7 +32,6 @@
             <div>
                 <label for="target-translate-language">Choose the target language*</label>
                 <select id="target-translate-language" name="target-translate-language" class="popup popup--select">
-                    <option value="">--Please choose language--</option>
                     <option value="fr">French</option>
                     <option value="en">English</option>
                     <option value="es">Spanish</option>
@@ -44,8 +42,12 @@
             </div>
             <button id="submit-button" type="submit" class="popup popup--button">Submit</button>
         </form>
+        <div class="popup popup--refresh popup--refresh--disable" id="refresh">
+            <span>Refresh this page</span>
+            <p>Click the button below for changes to take effect.</p>
+            <button id="refresh-button" type="button" class="popup popup--refresh--button popup--button">Refresh</button>
+        </div>
         <script type="text/javascript" src="languages.js"></script>
         <script type="text/javascript" src="popup.js"></script>
-        <script type="text/javascript" src="helper.js"></script>
     </body>
 </html>

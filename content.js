@@ -1,12 +1,28 @@
-let storageCache = {};
+let storageCache;
 
+//Get languages in chrome storage from user input
 chrome.storage.sync.get(['language'], function(response) {
-    storageCache = response
+    if (response) {
+        storageCache = response
+    } else {
+        storageCache = {
+            language: {
+                source: 'en',
+                target: 'fr',
+            }
+        }
+        console.log(storageCache)
+    }
     document.addEventListener("mouseup", getUserSelection)
 });
 
+// Get status from toggle button on popup
+chrome.storage.sync.get(['setEnabled'], function({setEnabled}) {
+    storageCache = {...storageCache, setEnabled}
+});
+
 function getUserSelection() {
-    if(window.getSelection) {
+    if(window.getSelection && storageCache.setEnabled === true) {
         const userSelection = window.getSelection().toString().trim();
         if (userSelection.length > 2 && userSelection.length < 50) {
             return callApiForTranslate(userSelection);
