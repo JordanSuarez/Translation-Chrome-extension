@@ -11,9 +11,12 @@ const app = {
     setExtensionEnabled: false,
     extensionEnable: 'Translation is enable',
     extensionDisable: 'Translation is disable',
+    languagesList: languages,
     init: () => {
         app.getExtensionStatus();
         app.displayStorageLanguage();
+        app.displaySelectOptions(app.selectSourceLanguage);
+        app.displaySelectOptions(app.selectTargetLanguage);
         app.submitButton.addEventListener('click', app.handleSubmit);
         app.toggleButton.addEventListener('click', app.handleToggleButtonStatus);
     },
@@ -28,6 +31,14 @@ const app = {
                 app.selectTargetLanguage.value = app.defaultTargetLanguage;
             }
         });
+    },
+    displaySelectOptions: (element) => {
+        app.languagesList.map(({code, name}) => {
+            const option = document.createElement('option')
+            option.value = code;
+            option.textContent = name;
+            element.appendChild(option);
+        })
     },
     getExtensionStatus: () => {
         chrome.storage.sync.get(['setEnabled'], function({setEnabled}) {
