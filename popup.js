@@ -32,12 +32,12 @@ const app = {
     getExtensionStatus: () => {
         chrome.storage.sync.get(['setEnabled'], function({setEnabled}) {
             if (setEnabled !== undefined) {
-                app.setExtensionEnabled = setEnabled
-                app.toggleButton.checked = setEnabled
+                app.setExtensionEnabled = setEnabled;
+                app.toggleButton.checked = setEnabled;
             } else {
-                app.toggleButton.checked = app.setExtensionEnabled
+                app.toggleButton.checked = app.setExtensionEnabled;
             }
-            app.handleDisplayTitle()
+            app.handleDisplayTitle();
         });
     },
     handleSubmit: (event) => {
@@ -48,18 +48,11 @@ const app = {
                 target: app.selectTargetLanguage.value,
             }
             app.saveSelectedValueOnStorage(selectedLanguage);
-            app.handleDisplayRefreshButton()
-        } else {
-            app.handleDisplayError();
+            app.handleDisplayRefreshButton();
         }
     },
-    handleDisplayError: () => {
-    //TODO display error on form if values are not selected on submit
-    // And if both values are identical
-    },
     handleClosePopup: () => {
-        window.close()
-    //TODO close popup on submit
+        window.close();
     },
     saveSelectedValueOnStorage: (selectedValues) => {
         // Save selected values
@@ -68,20 +61,19 @@ const app = {
     handleToggleButtonStatus: () => {
         // Save toggle button status
         chrome.storage.sync.set({'setEnabled': !app.setExtensionEnabled});
-        app.getExtensionStatus()
-        app.handleDisplayRefreshButton()
+        app.getExtensionStatus();
+        app.handleDisplayRefreshButton();
     },
     handleDisplayTitle: () => {
-        app.popupTitle.textContent = app.setExtensionEnabled ? app.extensionEnable : app.extensionDisable
+        app.popupTitle.textContent = app.setExtensionEnabled ? app.extensionEnable : app.extensionDisable;
     },
     handleDisplayRefreshButton: () => {
-        app.refreshContainer.classList.remove('popup--refresh--disable')
+        app.refreshContainer.classList.remove('popup--refresh--disable');
         app.refreshButton.addEventListener('click', app.refreshBrowser);
     },
     refreshBrowser: () => {
-        app.handleClosePopup()
-        chrome.tabs.reload()
-        //TODO refresh browser on submit for validate changes
+        app.handleClosePopup();
+        chrome.tabs.reload();
     },
 }
 
