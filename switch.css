@@ -1,0 +1,35 @@
+.toggle-button {
+    position: relative; width: 40px;
+    margin-right: 0.5rem;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.toggle-button-checkbox {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+.toggle-button-label {
+    display: block; overflow: hidden; cursor: pointer;
+    height: 15px; padding: 0; line-height: 27px;
+    border: 2px solid #E3E3E3; border-radius: 27px;
+    background-color: #FFFFFF;
+    transition: background-color 0.3s ease-in;
+}
+.toggle-button-label:before {
+    content: "";
+    display: block; width: 16px; margin: 0px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 20px;
+    border: 2px solid #E3E3E3; border-radius: 27px;
+    transition: all 0.3s ease-in 0s;
+}
+.toggle-button-checkbox:checked + .toggle-button-label {
+    background-color: #1C9DE8;
+}
+.toggle-button-checkbox:checked + .toggle-button-label, .toggle-button-checkbox:checked + .toggle-button-label:before {
+    border-color: #1C9DE8;
+}
+.toggle-button-checkbox:checked + .toggle-button-label:before {
+    right: 0px;
+}
