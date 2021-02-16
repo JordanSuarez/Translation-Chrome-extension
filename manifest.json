@@ -26,7 +26,7 @@
         "content.js",
         "config.js"
       ],
-      "css": ["styles.css"]
+      "css": ["css/styles.css"]
     }
   ]
 }
