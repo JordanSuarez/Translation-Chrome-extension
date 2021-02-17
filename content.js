@@ -1,3 +1,6 @@
+const minLengthOfSelectedValue = 2
+const maxLengthOfSelectedValue = 200
+
 let storageCache = {
     languages: {
         source: 'en',
@@ -21,7 +24,8 @@ chrome.storage.sync.get(['setEnabled'], function({setEnabled}) {
 function getUserSelection() {
     if(window.getSelection && storageCache.setEnabled === true) {
         const userSelection = window.getSelection().toString().trim();
-        if (userSelection.length > 2 && userSelection.length < 50) {
+        if (userSelection.length > minLengthOfSelectedValue
+            && userSelection.length < maxLengthOfSelectedValue) {
             return callApiForTranslate(userSelection);
         }
     }
@@ -54,18 +58,15 @@ function insertHtmlFromSelection(selectionObject, translation, valueSelected) {
 
             // Insert html content from selection
             const frag = range.createContextualFragment(
-                `<span class="translate">[${storageCache.languages.target.toUpperCase()}: ${translation} ]</span>`
-            );
+                `<span class="translate">[${storageCache.languages.target.toUpperCase()}: ${translation} ]</span>`);
             range.insertNode(frag);
 
             // Next step consists to reselect the previously selected value, because focus is lost after node insertion
             const offset = selectionObject.anchorOffset
             const selectionOffset =  offset - valueSelected.length
-
             const parentNode = selectionObject.anchorNode.parentElement
             const childNodes = selectionObject.anchorNode.parentNode.childNodes
             const node = findCurrentNodeIndex(childNodes, selectionObject)
-
             const textNode = parentNode.childNodes[node]
 
             range.setStart(textNode, selectionOffset);
