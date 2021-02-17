@@ -45,27 +45,19 @@ function callApiForTranslate(valueSelected) {
 function insertHtmlFromSelection(selectionObject, translation) {
     const childNodes = selectionObject.getRangeAt(0).startContainer.childNodes
     const childArray = Array.from(childNodes)
-    // Enable trad if selection is not inside input element
-    if (!childArray.find(element => element.matches('input'))) {
-        let range;
-        let expandedSelRange;
-        let node;
-        if (selectionObject.getRangeAt && selectionObject.rangeCount) {
-        range = window.getSelection().getRangeAt(0);
-        expandedSelRange = range.cloneRange();
-        range.collapse(false);
 
-        // insert html content
-        const el = document.createElement("div");
-        el.innerHTML = `<span class="translate">[${storageCache.languages.target.toUpperCase()}: ${translation} ]</span>`;
-        let frag = document.createDocumentFragment();
-        let node;
-        let lastNode;
-        while ((node = el.firstChild)) {
-            lastNode = frag.appendChild(node);
-        }
-        range.insertNode(frag);
-        selectionObject.empty();
+    // Enable translation if selection is not inside input element
+    if (!childArray.find(element => element.matches('input'))) {
+        if (selectionObject.getRangeAt && selectionObject.rangeCount) {
+            const range = window.getSelection().getRangeAt(0);
+            range.collapse(false);
+
+            // Insert html content from selection
+            const frag = range.createContextualFragment(
+                `<span class="translate">[${storageCache.languages.target.toUpperCase()}: ${translation} ]</span>`
+            );
+            range.insertNode(frag);
+            selectionObject.empty();
         }
     }
 }
