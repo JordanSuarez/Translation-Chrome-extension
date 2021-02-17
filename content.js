@@ -38,11 +38,11 @@ function callApiForTranslate(valueSelected) {
     .then(response => response.json())
     .then(({responseData}) => {
         const {translatedText} = responseData
-        insertHtmlFromSelection(window.getSelection(), translatedText)
+        insertHtmlFromSelection(window.getSelection(), translatedText, valueSelected)
     })
 }
 
-function insertHtmlFromSelection(selectionObject, translation) {
+function insertHtmlFromSelection(selectionObject, translation, valueSelected) {
     const childNodes = selectionObject.getRangeAt(0).startContainer.childNodes
     const childArray = Array.from(childNodes)
 
@@ -57,7 +57,27 @@ function insertHtmlFromSelection(selectionObject, translation) {
                 `<span class="translate">[${storageCache.languages.target.toUpperCase()}: ${translation} ]</span>`
             );
             range.insertNode(frag);
-            selectionObject.empty();
+
+            // Next step consists to reselect the previously selected value, because focus is lost after node insertion
+            const offset = selectionObject.anchorOffset
+            const selectionOffset =  offset - valueSelected.length
+
+            const parentNode = selectionObject.anchorNode.parentElement
+            const childNodes = selectionObject.anchorNode.parentNode.childNodes
+            const node = findCurrentNodeIndex(childNodes, selectionObject)
+
+            const textNode = parentNode.childNodes[node]
+
+            range.setStart(textNode, selectionOffset);
+            range.setEnd(textNode, offset);
+        }
+    }
+}
+
+function findCurrentNodeIndex(childNodes, element) {
+    for (let i = 0; i < childNodes.length; i++) {
+        if (childNodes[i].textContent === element.anchorNode.nodeValue) {
+            return i
         }
     }
 }
