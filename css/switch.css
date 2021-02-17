@@ -1,35 +1,47 @@
-.toggle-button {
-    position: relative; width: 40px;
+.popup__toggle__button {
+    position: relative;
+    width: 40px;
     margin-right: 0.5rem;
-    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select: none;
 }
-.toggle-button-checkbox {
+.popup__toggle__button__checkbox {
     position: absolute;
     opacity: 0;
     pointer-events: none;
 }
-.toggle-button-label {
-    display: block; overflow: hidden; cursor: pointer;
-    height: 15px; padding: 0; line-height: 27px;
-    border: 2px solid #E3E3E3; border-radius: 27px;
+.popup__toggle__button__label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    height: 15px;
+    padding: 0;
+    line-height: 27px;
+    border: 2px solid #E3E3E3;
+    border-radius: 27px;
     background-color: #FFFFFF;
     transition: background-color 0.3s ease-in;
 }
-.toggle-button-label:before {
+.popup__toggle__button__label:before {
     content: "";
-    display: block; width: 16px; margin: 0px;
+    display: block; width: 16px;
+    margin: 0;
     background: #FFFFFF;
-    position: absolute; top: 0; bottom: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
     right: 20px;
-    border: 2px solid #E3E3E3; border-radius: 27px;
+    border: 2px solid #E3E3E3;
+    border-radius: 27px;
     transition: all 0.3s ease-in 0s;
 }
-.toggle-button-checkbox:checked + .toggle-button-label {
+.popup__toggle__button__checkbox:checked + .popup__toggle__button__label {
     background-color: #1C9DE8;
 }
-.toggle-button-checkbox:checked + .toggle-button-label, .toggle-button-checkbox:checked + .toggle-button-label:before {
+.popup__toggle__button__checkbox:checked + .popup__toggle__button__label, .popup__toggle__button__checkbox:checked + .popup__toggle__button__label:before {
     border-color: #1C9DE8;
 }
-.toggle-button-checkbox:checked + .toggle-button-label:before {
-    right: 0px;
+.popup__toggle__button__checkbox:checked + .popup__toggle__button__label:before {
+    right: 0;
 }

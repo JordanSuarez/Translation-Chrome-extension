@@ -4,7 +4,7 @@ const app = {
     toggleButton: document.querySelector('#toggle-button'),
     submitButton: document.querySelector('#submit-button'),
     refreshButton: document.querySelector('#refresh-button'),
-    popupTitle: document.querySelector('#popup--activate--title'),
+    popupTitle: document.querySelector('#popup__toggle__title'),
     refreshContainer: document.querySelector('#refresh'),
     defaultSourceLanguage: 'en',
     defaultTargetLanguage: 'fr',
@@ -79,7 +79,7 @@ const app = {
         app.popupTitle.textContent = app.setExtensionEnabled ? app.extensionEnable : app.extensionDisable;
     },
     handleDisplayRefreshButton: () => {
-        app.refreshContainer.classList.remove('popup--refresh--disable');
+        app.refreshContainer.classList.remove('popup__refresh--disable');
         app.refreshButton.addEventListener('click', app.refreshBrowser);
     },
     refreshBrowser: () => {

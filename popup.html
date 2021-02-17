@@ -6,32 +6,32 @@
         <link rel="stylesheet" href="css/switch.css">
     </head>
     <body class="popup">
-        <div class="popup popup--title">
+        <div class="popup__title">
             <img src="icons/icon24.png" alt="icon translate">
             <h2>Translate options</h2>
         </div>
-        <div class="popup--activate">
-            <span id="popup--activate--title"></span>
-            <div class="toggle-button">
-                <input type="checkbox" name="toggle-button" class="toggle-button-checkbox" id="toggle-button" tabindex="0" checked>
-                <label class="toggle-button-label" for="toggle-button"></label>
+        <div class="popup__toggle">
+            <span id="popup__toggle__title"></span>
+            <div class="popup__toggle__button">
+                <input type="checkbox" name="toggle-button" class="popup__toggle__button__checkbox" id="toggle-button" tabindex="0" checked>
+                <label class="popup__toggle__button__label" for="toggle-button"></label>
             </div>
         </div>
         <form>
-            <div>
+            <div class="">
                 <label for="source-translate-language">Choose the source language*</label>
-                <select id="source-translate-language" name="source-translate-language" class="popup popup--select"></select>
+                <select id="source-translate-language" name="source-translate-language" class="popup__select"></select>
             </div>
             <div>
                 <label for="target-translate-language">Choose the target language*</label>
-                <select id="target-translate-language" name="target-translate-language" class="popup popup--select"></select>
+                <select id="target-translate-language" name="target-translate-language" class="popup__select"></select>
             </div>
-            <button id="submit-button" type="submit" class="popup popup--button">Submit</button>
+            <button id="submit-button" type="submit" class="popup__button">Submit</button>
         </form>
-        <div class="popup popup--refresh popup--refresh--disable" id="refresh">
+        <div class="popup__refresh popup__refresh--disable" id="refresh">
             <span>Refresh this page</span>
             <p>Click the button below for changes to take effect.</p>
-            <button id="refresh-button" type="button" class="popup popup--refresh--button popup--button">Refresh</button>
+            <button id="refresh-button" type="button" class="popup__refresh__button popup__button">Refresh</button>
         </div>
         <script type="text/javascript" src="languages.js"></script>
         <script type="text/javascript" src="popup.js"></script>
